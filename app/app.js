@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 
 // routing
-const home = require("./routes/home"); // 이 안에 있는 자바스크립트를 읽어오라
+const home = require("./src/routes/home"); // 이 안에 있는 자바스크립트를 읽어오라
 
 // app setting
 app.set("views", "./views"); // views를 setting
