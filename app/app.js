@@ -8,7 +8,7 @@ const app = express();
 const home = require("./src/routes/home"); // 이 안에 있는 자바스크립트를 읽어오라
 
 // app setting
-app.set("views", "./views"); // views를 setting
+app.set("views", "./src/views"); // views를 setting
 app.set("views engine", "ejs"); // ejs는 html과 비슷한 엔진
 
 // middleware
