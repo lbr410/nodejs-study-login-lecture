@@ -25,5 +25,15 @@ function login() {
         body: JSON.stringify(req), // json 데이터 타입으로 데이터 전달
     })
         .then((res) => res.json()) // 응답을 받으려면 then()을 씀
-        .then((res) => {}); // 바로 앞 then에서 res.json() '작업이 끝나면!!' res.json()의 결과를 반환받음
+        .then((res) => {
+            if(res.success) {
+                location.href ="/";
+            } else {
+                alert(res.msg);
+            }
+        }) // 바로 앞 then에서 res.json() '작업이 끝나면!!' res.json()의 결과를 반환받음
+        .catch((err) => {
+            console.error("로그인 중 에러 발생");
+            // console.error(new Error("로그인 중 에러 발생"));
+        });
 }
