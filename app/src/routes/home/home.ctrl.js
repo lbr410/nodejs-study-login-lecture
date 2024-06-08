@@ -1,4 +1,6 @@
-"use strict"; 
+"use strict";
+
+const UserStorage = require("../../models/UserStorage");
 
 const output = {
     home: (req, res) => {
@@ -9,32 +11,32 @@ const output = {
     },
 };
 
-const users = {
-    id: ["뭉이", "조이", "성환"],
-    password: ["1234", "1234", "123456"],
-}; 
-
 const process = {
     login: (req, res) => {
         // console.log(req.body); // 프론트에서 전달한 body 데이터
         // console.log(res);
+
         const id = req.body.id,
             password = req.body.password;
+
+        // const userStorage = new UserStorage(); // 클래스니까 인스턴스 만들 때 이렇게 만듦
+        // console.log(UserStorage.getUsers("id", "password", "name"));
+        // id와 password만 반환하게 해주려면 이렇게 받아옴. 이 두 개의 필드만 받아와줌
+        const users = UserStorage.getUsers("id", "password");
         
+        const response = {};
         if(users.id.includes(id)) { // 프론트엔드에서 전달한 id가 users의 id에 있으면
             const idx = users.id.indexOf(id);
             if(users.password[idx] === password) {
-                return res.json({
-                    success: true,
-                });
+                response.success = true;
+                return res.json(response);
             }
         }
 
-        return res.json({
-            success: false,
-            msg: "로그인에 실패하였습니다.",
-        });
-    }
+        response.success = false;
+        response.msg = "로그인이 실패하였습니다.";
+        return res.json(response);
+    },
 };
 
 
