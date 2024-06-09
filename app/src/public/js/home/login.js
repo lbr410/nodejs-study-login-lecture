@@ -4,7 +4,7 @@
 
 const id = document.querySelector("#id"), // tag에 부여된 id
     password = document.querySelector("#password"),
-    loginBtn = document.querySelector("button"); // tag 그대로 불러옴
+    loginBtn = document.querySelector("#button");
 
 loginBtn.addEventListener("click", login);
 
@@ -24,7 +24,7 @@ function login() {
         },
         body: JSON.stringify(req), // json 데이터 타입으로 데이터 전달
     })
-        .then((res) => res.json()) // 응답을 받으려면 then()을 씀
+        .then((res) => res.json()) // 응답을 받으려면 then()을 씀 / 값을 기다리고 있는 상태인 promise 객체를 반환. promise 객체를 반환하니 then으로 chaining
         .then((res) => {
             if(res.success) {
                 location.href ="/";
