@@ -45,6 +45,11 @@ const process = {
         // response.msg = "로그인이 실패하였습니다.";
         // return res.json(response);
     },
+    register: (req, res) => {
+        const user = new User(req.body);
+        const response = user.register();
+        return res.json(response);
+    },
 };
 
 
