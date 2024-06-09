@@ -7,11 +7,11 @@ class User {
         this.body = body;
     }
 
-    login() {
+    async login() {
         const client = this.body;
-        const { id, password } = UserStorage.getUserInfo(client.id);
+        const { id, password } = await UserStorage.getUserInfo(client.id); // await은 데이터를 다 읽어올 때까지 기다리라고 알려줌. promise를 반환하는 애한테만 할 수 있음
         
-        if(id) { // "zoe"라는 아이디가 userstorage에 있으면
+        if(id) {
             if(id === client.id && password === client.password) {
                 return { success: true };
             }
