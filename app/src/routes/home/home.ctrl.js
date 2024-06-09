@@ -21,9 +21,9 @@ const process = {
         const response = await user.login();
         return res.json(response); // json 객체로 만들어 클라이언트에게 던져줌
     },
-    register: (req, res) => {
+    register: async (req, res) => {
         const user = new User(req.body);
-        const response = user.register();
+        const response = await user.register();
         return res.json(response);
     },
 };
